@@ -32,6 +32,7 @@ function Input({
           backgroundColor: t.bgSecondary,
           color: t.text,
           border: `1px solid ${t.border}`,
+          ...props.style,
         }}
         {...props}
         />

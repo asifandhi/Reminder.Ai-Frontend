@@ -7,11 +7,47 @@ import store from './store.js/store.js'
 import { Provider } from 'react-redux'
 import { createBrowserRouter ,  RouterProvider } from 'react-router-dom'
 
+import Home from './pages/Home.jsx'
+import Settings from './pages/Settings.jsx'
+import Completed from './pages/Completed.jsx'
+import Login from './pages/Login.jsx'
+import Signup from './pages/Signup.jsx'
+
 const router = createBrowserRouter([
   {
     path: "/",
     element :<App/>,
     children :[
+      {
+        path: "/",
+        element: <AuthLayout authentication={true}>
+            <Home />
+          </AuthLayout>,
+      },
+      {
+        path: "/settings",
+        element: <AuthLayout authentication={true}>
+            <Settings />
+          </AuthLayout>,
+      },
+      {
+        path: "/completed",
+        element: <AuthLayout authentication={true}>
+           <Completed />
+          </AuthLayout>,
+      },
+      {
+        path: "/login",
+        element: <AuthLayout authentication={false}>
+            <Login />
+          </AuthLayout>,
+      },
+      {
+        path: "/signup",
+        element: <AuthLayout authentication={false}>
+            <Signup />
+          </AuthLayout>,
+      },
 
     ]
   }

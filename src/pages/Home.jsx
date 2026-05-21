@@ -1,12 +1,27 @@
-import React,{useState}  from 'react'
+import React,{useState,useEffect}  from 'react'
 import { useSelector } from 'react-redux'
 import { addReminder } from '../api/sync.js'
+import TaskCard from '../components/TaskCard.jsx';
+import { getCompletedTasks , getPendingTasks } from '../api/sync.js';
 
 
 function Home() {
     const [text, setText] = useState("");
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(false); 
+
+
+    useEffect(() => {
+    const fetchPending = async () => {
+        try {
+        const res = await getPendingTasks();
+        setTasks(res.data.data.tasks);
+        } catch (err) {
+        console.error("Failed to fetch pending tasks:", err);
+        }
+    };
+    fetchPending();
+    }, []);
 
     const handleSubmit = async () => {
     if (!text.trim()) return;
@@ -48,38 +63,17 @@ function Home() {
           {/* Task Cards */}
           {tasks.length > 0 && (
             <div className="w-full max-w-2xl flex flex-col gap-3">
-              {tasks.map((task, i) => (
-                <div
-                  key={i}
-                  className="p-4 rounded-xl flex items-center gap-4"
-                  style={{
-                    background: "rgba(21,27,45,0.4)",
-                    backdropFilter: "blur(16px)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                  }}
-                >
-                  <div className="w-2 h-8 rounded-full"
-                    style={{ backgroundColor: i % 2 === 0 ? "#feb127" : "#00d1ff" }}
-                  />
-                  <div className="flex-grow flex justify-between items-center gap-4">
-                    <span className="text-base" style={{ color: "#dce1fb" }}>
-                      {task.task}
-                    </span>
-                    <span
-                      className="text-xs px-2 py-1 rounded whitespace-nowrap"
-                      style={{
-                        background: "rgba(21,27,45,0.4)",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        color: "#859399",
-                      }}
-                    >
-                      {task.deadline || "No deadline"}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                {tasks.map((task, i) => (
+                <TaskCard
+                    key={task._id}
+                    task={task}
+                    index={i}
+                    variant="pending"
+                    onDelete={(id) => setTasks((prev) => prev.filter((t) => t._id !== id))}
+                    onComplete={(id) => setTasks((prev) => prev.filter((t) => t._id !== id))}                />
+                ))}
             </div>
-          )}
+            )}
 
           {/* Input Bar */}
           <div className="w-full relative group">
@@ -138,7 +132,7 @@ function Home() {
       </footer>
     </div>
   );
-  )
+  
 }
 
 export default Home
