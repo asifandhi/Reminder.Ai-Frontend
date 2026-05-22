@@ -1,0 +1,37 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000R\u0000e\u0000m\u0000i\u0000n\u0000d\u0000e\u0000r\u0000.\u0000A\u0000i\u0000-\u0000B\u0000a\u0000c\u0000k\u0000e\u0000n\u0000d\u0000\r\u0000 \u0000",
+  "type": "module",
+  "homepage": "https://github.com/asifandhi/Reminder.Ai-Backend#readme",
+  "bugs": {
+    "url": "https://github.com/asifandhi/Reminder.Ai-Backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asifandhi/Reminder.Ai-Backend.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config --experimental-modules src/index.js",
+    "dev2": "nodemon --env-file=.env src/index.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "googleapis": "^171.4.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "prettier": "^3.8.3"
+  }
+}

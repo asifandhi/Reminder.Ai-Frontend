@@ -11,8 +11,7 @@ import { getMe } from './api/auth.js'
 
 function App() {
 
-  const mode = useSelector((state)=> state.theme.mode);
-  const t = theme[mode]
+  const t = theme["dark"]
 
   const dispatch = useDispatch();
 

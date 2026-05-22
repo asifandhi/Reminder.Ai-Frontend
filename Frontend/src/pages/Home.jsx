@@ -61,7 +61,7 @@ function Home() {
         style={{ background: "rgba(96,1,209,0.08)", filter: "blur(100px)" }}
       />
 
-      <main className="flex-grow flex flex-col justify-center items-center px-5 md:px-16 pt-32 pb-20">
+      <main className="flex-grow flex flex-col justify-end items-center px-5 md:px-16 pt-32 pb-20">
         <div className="max-w-3xl w-full flex flex-col items-center gap-12">
 
           {status ? (
@@ -83,7 +83,7 @@ function Home() {
               )}
 
               {/* Input Bar */}
-              <div className="w-full relative group">
+              <div className="w-full relative  group">
                 <div className="absolute -inset-1 rounded-full blur opacity-0 group-hover:opacity-100 transition duration-500"
                   style={{ background: "linear-gradient(to right, rgba(0,209,255,0.2), rgba(96,1,209,0.2))" }}
                 />
@@ -95,9 +95,9 @@ function Home() {
                     border: "1px solid rgba(255,255,255,0.1)",
                   }}
                 >
-                  <span className="ml-4 text-xl" style={{ color: "#859399" }}>🔍</span>
+                  <span className="ml-4  text-xl" style={{ color: "#859399" }}>🔍</span>
                   <input
-                    className="flex-grow bg-transparent border-none outline-none px-4 py-3 text-lg"
+                    className="flex-grow  bg-transparent border-none outline-none px-4 py-3 text-lg"
                     style={{ color: "#dce1fb" }}
                     placeholder="Paste WhatsApp/email text to create reminders..."
                     value={text}

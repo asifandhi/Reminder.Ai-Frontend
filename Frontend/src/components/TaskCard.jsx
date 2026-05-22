@@ -7,11 +7,19 @@ const COLORS = ["#00d1ff", "#feb127", "#a78bfa", "#34d399", "#f472b6"];
 function timeRemaining(deadline) {
   if (!deadline) return null;
   const diff = new Date(deadline) - new Date();
-  if (diff < 0) return { label: "Overdue", color: "#f87171" };
+  if (diff < 0) return {
+     label: "Overdue", color: "#f87171" 
+    };
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  if (days === 0) return { label: "Due today", color: "#feb127" };
-  if (days === 1) return { label: "1 day left", color: "#feb127" };
-  return { label: `${days} days left`, color: "#34d399" };
+  if (days === 0) return {
+     label: "Due today", color: "#feb127" 
+    };
+  if (days === 1) return {
+     label: "1 day left", color: "#feb127" 
+    };
+  return {
+     label: `${days} days left`, color: "#34d399" 
+    };
 }
 
 function formatDate(deadline) {
@@ -79,6 +87,13 @@ function TaskCard({ task, index, onDelete, onComplete, variant = "pending" }) {
           }}
         >
           {task.task}
+
+          {task.description && (
+  <span className="text-xs" style={{ color: "#859399" }}>
+    {task.description}
+  </span>
+)}
+          
         </span>
 
         <div className="flex items-center gap-3 flex-wrap">

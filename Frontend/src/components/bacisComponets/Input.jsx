@@ -11,8 +11,7 @@ function Input({
     ...props
 }) 
 {
-  const mode = useSelector((state) => state.theme.mode);
-  const t = theme[mode];
+  const t = theme["dark"];
 
   return (
     <div>

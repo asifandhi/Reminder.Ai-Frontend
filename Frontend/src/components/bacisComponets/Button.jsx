@@ -10,8 +10,7 @@ function Button({
     disabled = false,
     ...props
 }) {
-    const mode = useSelector((state) => state.theme.mode)
-    const t = theme[mode];
+    const t = theme["dark"];
 
     const base = "px-4 py-2 rounded-xl font-semibold transition-all duration-200 cursor-pointer";
 

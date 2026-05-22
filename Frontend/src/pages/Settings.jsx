@@ -184,13 +184,17 @@ function Settings() {
                 <p className="text-xs" style={{ color: "#859399" }}>Connect to sync reminders</p>
               </div>
             </div>
+            {user?.googleTokens?.accessToken ? (
+            <span className="text-xs font-medium" style={{ color: "#34d399" }}>✓ Connected</span>
+            ) : (
             <Button
-              variant="cta"
-              className="text-xs px-4 py-2 rounded-full"
-              onClick={connectGoogle}
+                variant="cta"
+                className="text-xs px-4 py-2 rounded-full"
+                onClick={connectGoogle}
             >
-              Connect
+                Connect
             </Button>
+            )}
           </div>
         </div>
 
