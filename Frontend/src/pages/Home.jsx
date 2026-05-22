@@ -40,7 +40,10 @@ function Home() {
   };
 
   const handleKey = (e) => {
-    if (e.key === "Enter") handleSubmit();
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit();
+    }
   };
 
   return (
@@ -83,38 +86,48 @@ function Home() {
               )}
 
               {/* Input Bar */}
-              <div className="w-full relative  group">
-                <div className="absolute -inset-1 rounded-full blur opacity-0 group-hover:opacity-100 transition duration-500"
-                  style={{ background: "linear-gradient(to right, rgba(0,209,255,0.2), rgba(96,1,209,0.2))" }}
-                />
-                <div
-                  className="relative w-full flex items-center p-2 rounded-full transition-all duration-300"
-                  style={{
-                    background: "rgba(21,27,45,0.4)",
-                    backdropFilter: "blur(16px)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                  }}
-                >
-                  <span className="ml-4  text-xl" style={{ color: "#859399" }}>🔍</span>
-                  <input
-                    className="flex-grow  bg-transparent border-none outline-none px-4 py-3 text-lg"
-                    style={{ color: "#dce1fb" }}
-                    placeholder="Paste WhatsApp/email text to create reminders..."
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
-                    onKeyDown={handleKey}
-                  />
-                  <Button
-                    variant="primary"
-                    onClick={handleSubmit}
-                    disabled={loading}
-                    className="p-3 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: "#1e293b", color: "#a4e6ff" }}
-                  >
-                    {loading ? "⏳" : "↑"}
-                  </Button>
-                </div>
-              </div>
+              <div className="w-full relative group">
+  <div className="absolute -inset-1 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"
+    style={{ background: "linear-gradient(to right, rgba(0,209,255,0.2), rgba(96,1,209,0.2))" }}
+  />
+  <div
+    className="relative w-full flex items-end gap-2 px-4 py-3 rounded-2xl transition-all duration-300"
+    style={{
+      background: "rgba(21,27,45,0.4)",
+      backdropFilter: "blur(16px)",
+      border: "1px solid rgba(255,255,255,0.1)",
+    }}
+  >
+    <span className="text-xl pb-0.5 shrink-0" style={{ color: "#859399" }}>🔍</span>
+    <textarea
+      className="flex-grow bg-transparent border-none outline-none text-lg resize-none overflow-hidden"
+      style={{ color: "#dce1fb", minHeight: "28px", maxHeight: "200px", lineHeight: "1.5" }}
+      placeholder="Paste WhatsApp/email text to create reminders..."
+      value={text}
+      rows={1}
+      onChange={(e) => {
+        setText(e.target.value);
+        e.target.style.height = "auto";
+        e.target.style.height = e.target.scrollHeight + "px";
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          handleSubmit();
+        }
+      }}
+    />
+    <Button
+      variant="primary"
+      onClick={handleSubmit}
+      disabled={loading}
+      className="p-2 rounded-full flex items-center justify-center shrink-0"
+      style={{ backgroundColor: "#1e293b", color: "#a4e6ff" }}
+    >
+      {loading ? "⏳" : "↑"}
+    </Button>
+  </div>
+</div>
 
               <p className="text-base text-center max-w-lg" style={{ color: "#859399" }}>
                 Paste any text — ReminderAI extracts tasks and adds them to your Google Calendar.
